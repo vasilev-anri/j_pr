@@ -1,0 +1,12 @@
+{% extends 'base/main.html' %}
+{% include 'base/header.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+{% endblock head %}
+
+{% block body %}
+    <h1>logged out</h1>
+    <a href="{% url 'login' %}">login</a>
+{% endblock body %}

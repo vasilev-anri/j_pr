@@ -1,0 +1,34 @@
+{% extends 'base/main.html' %}
+{% include 'base/header.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+{% endblock head %}
+
+{% block body %}
+    <div class="table-container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Standard Advertisements</th>
+                <th>Provided By</th>
+                <th>Published</th>
+                <th>Deadline</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                {% for job in jobs %}
+                    <tr>
+                        <td data-label="SA"><a href="{% url 'job-detail' job.id %}">{{ job.standard_advertisements }}</a></td>
+                        <td data-label="PB"><a href="{% url 'user-jobs' job.provided_by.username %}">{{ job.provided_by }}</a></td>
+                        <td data-label="PUB">{{ job.published|date:"d F" }}</td>
+                        <td data-label="DL">{{ job.deadline|date:"d F" }}</td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}

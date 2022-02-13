@@ -1,0 +1,11 @@
+{% extends 'base/main.html' %}
+{% include 'base/header.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+{% endblock head %}
+
+{% block body %}
+    {{ object.standard_advertisements }}
+{% endblock body %}
