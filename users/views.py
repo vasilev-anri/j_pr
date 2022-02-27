@@ -30,6 +30,6 @@ def profile(request):
             login(request, user)
             return redirect('base-home')
     context = {}
-    return render(request, 'users/login.html', context)
+    return render(request, 'users/profile.html', context)
 
 
