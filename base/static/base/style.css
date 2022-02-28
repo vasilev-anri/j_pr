@@ -160,3 +160,8 @@ body {
 }
 
 /*registration form*/
+
+.user_card h2 {
+    text-align: center;
+}
+

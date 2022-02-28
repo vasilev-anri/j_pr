@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from .models import Job
 
@@ -35,9 +35,30 @@ class JobCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Job
+    fields = ['standard_advertisements', 'content', 'deadline']
+
+    def form_valid(self, form):
+        form.instance.provided_by = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        job = self.get_object()
+        if self.request.user == job.provided_by:
+            return True
+        return False
 
 
+class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Job
+    success_url = '/'
 
+    def test_func(self):
+        job = self.get_object()
+        if self.request.user == job.provided_by:
+            return True
+        return False
 
 
 
