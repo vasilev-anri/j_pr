@@ -17,8 +17,6 @@ class Job(models.Model):
     deadline = models.DateField(auto_now_add=False, auto_now=False, blank=False)
     provided_by = models.ForeignKey(User, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True)
-    # image = models.ImageField(upload_to='company_logos')
-    description = models.TextField(default="")
 
     def __str__(self):
         return self.standard_advertisements
