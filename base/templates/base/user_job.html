@@ -15,9 +15,7 @@
     <div class="company_info">
         <div class="row">
             <div class="col-2">
-                {% for job in jobs %}
-                    <img class="img-fluid" src="{{ job.image.url }}" alt="">
-                {% endfor %}
+                <img class="img-fluid" src="{{ user.profile.image.url }}" alt="">
             </div>
             <div class="col-10">
                 {% for job in jobs %}
