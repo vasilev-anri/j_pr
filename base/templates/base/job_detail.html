@@ -7,5 +7,25 @@
 {% endblock head %}
 
 {% block body %}
-    {{ object.standard_advertisements }}
+    <div class="m-4">
+        <p class="m-0">Standard advertisement: {{ object.standard_advertisements }}</p>
+        <p class="m-0">Provided by: {{ object.provided_by }}</p>
+        <p class="m-0">Publish date: {{ object.published }}</p>
+        <p class="m-0">Deadline: {{ object.deadline }}</p>
+        {% if object.work_type != "remote" %}
+            <p class="m-0">Location: {{ object.city }}</p>
+        {% endif %}
+        {% if object.work_type %}
+            <p class="m-0">Work type: {{ object.work_type }}</p>
+        {% endif %}
+
+
+        <p class="mt-5">{{ object.content }}</p>
+
+        <a class="btn btn-danger" href="{% url 'job-delete' object.id%}">Delete</a>
+        <a class="btn btn-primary" href="{% url 'job-update' object.id%}">Update</a>
+
+
+    </div>
+
 {% endblock body %}

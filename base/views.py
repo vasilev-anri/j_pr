@@ -28,7 +28,8 @@ class JobDetailView(DetailView):
 
 class JobCreateView(LoginRequiredMixin, CreateView):
     model = Job
-    fields = ['standard_advertisements', 'content', 'deadline', 'city']
+    template_name = 'base/job_creation_form.html'
+    fields = ['standard_advertisements', 'content', 'deadline', 'city', 'work_type']
 
     def form_valid(self, form):
         form.instance.provided_by = self.request.user
@@ -37,7 +38,8 @@ class JobCreateView(LoginRequiredMixin, CreateView):
 
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Job
-    fields = ['standard_advertisements', 'content', 'deadline', 'city']
+    template_name = 'base/job_update_form.html'
+    fields = ['standard_advertisements', 'content', 'deadline', 'city', 'work_type']
 
     def form_valid(self, form):
         form.instance.provided_by = self.request.user
